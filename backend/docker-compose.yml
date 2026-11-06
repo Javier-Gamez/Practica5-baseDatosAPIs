@@ -24,6 +24,8 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-notesdb}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-change-this-secret-in-production}
       JWT_EXP_MINUTES: ${JWT_EXP_MINUTES:-60}
+      ADMIN_USERNAMES: ${ADMIN_USERNAMES:-admin}
+      GOOGLE_CLIENT_IDS: ${GOOGLE_CLIENT_IDS:-}
     ports:
       - "5000:5000"
     volumes:
