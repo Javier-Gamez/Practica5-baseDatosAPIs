@@ -66,5 +66,21 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<!-- Solo permite HTTP hacia localhost/red local durante el desarrollo -->
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- Reemplazar por el "reversed client ID" de iOS de tu proyecto Google Cloud -->
+				<string>com.googleusercontent.apps.REEMPLAZAR</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
