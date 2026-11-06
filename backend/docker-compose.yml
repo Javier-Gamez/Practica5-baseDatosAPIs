@@ -1,13 +1,13 @@
 services:
   db:
     build: ./db
-    container_name: notes_postgres_db
+    container_name: p5_postgres_db
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-notesdb}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
@@ -19,7 +19,7 @@ services:
 
   web:
     build: .
-    container_name: flask_notes_backend
+    container_name: p5_flask_backend
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-notesdb}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-change-this-secret-in-production}
