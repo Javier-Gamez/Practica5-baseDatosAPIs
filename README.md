@@ -13,6 +13,15 @@ sincronización con cola offline, historial, favoritos, recomendaciones, login c
 > Base reutilizada de la Práctica 2: <https://github.com/Javier-Gamez/Flask-Compose-Login-API> (commit [`5c8fc61`](https://github.com/Javier-Gamez/Flask-Compose-Login-API/commit/5c8fc61fab3ce9e4328c39311c5c362e8ca6252e)).
 > **Reutilizado:** `/`, `/register`, `/login`, CRUD `/notes`, Docker Compose y bcrypt+JWT. **Añadido:** todo lo marcado como *Nuevo* en la tabla de endpoints y el cliente multiplataforma.
 
+### Capturas
+
+| Android (celular físico) | iOS (simulador) |
+|---|---|
+| ![Búsqueda](docs/evidencias/android/03-busqueda.png) | ![Búsqueda iOS](docs/evidencias/ios/p5_ios_03_busqueda.png) |
+| ![Recomendaciones](docs/evidencias/android/08-recomendaciones.png) | ![Recomendaciones iOS](docs/evidencias/ios/p5_ios_08_recomendaciones.png) |
+
+Galería completa: [`docs/evidencias`](docs/evidencias/README.md).
+
 ### Estructura
 
 ```
@@ -103,6 +112,7 @@ Detalle en [`docs/sincronizacion.md`](docs/sincronizacion.md).
 
 ### Documentación
 
+- [`docs/evidencias/`](docs/evidencias/README.md) — **capturas** de Android (físico) e iOS (simulador)
 - [`docs/informe-tecnico.md`](docs/informe-tecnico.md) — informe técnico
 - [`docs/matriz-pruebas.md`](docs/matriz-pruebas.md) — matriz de pruebas Android/iOS
 - [`docs/sincronizacion.md`](docs/sincronizacion.md) — estrategia de sincronización
