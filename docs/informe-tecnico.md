@@ -31,7 +31,10 @@ Pruebas automatizadas: 4 de backend y 6 de cliente aprobadas (ver `docs/matriz-p
 ## 9. Conclusiones
 Un único cliente Flutter cubre ambas plataformas; la cola idempotente evita pérdidas y duplicados durante los reintentos. Limitación: iOS se validó solo en simulador (Codemagic) y con servicios simulados.
 
-## 10. Herramientas de IA declaradas
+## 10. Autoría y contribuciones
+Práctica realizada de forma **individual** por Javier Gámez (sin otros integrantes): diseño, backend, cliente Flutter, pruebas, configuración de Google OAuth, CI en Codemagic y documentación.
+
+## 10.1 Herramientas de IA declaradas
 Se utilizó Claude (Anthropic) como asistente de programación para generar y revisar código y documentación; el autor revisó y probó el resultado.
 
 ## 11. Bibliografía (APA)
