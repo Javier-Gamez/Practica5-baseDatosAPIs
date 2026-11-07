@@ -32,7 +32,7 @@ Ejecutar los mismos pasos en ambas plataformas. Completar dispositivo/SO y adjun
 ## Defectos encontrados
 | ID | Descripción | Estado |
 |---|---|---|
-| DEF-1 | Al guardar una nota, `setState` recibía un `Future` (callback con `=>` y asignación) y Flutter lanzaba error en debug; afectaba también a Favoritos, Historial y Búsqueda | Corregido (issue enlazado en GitHub) |
-| DEF-2 | Sin conexión no se muestran las imágenes de las series (solo datos guardados) | Abierto (limitación conocida) |
-| DEF-3 | El JWT expira a los 60 min y la app vuelve al login sin mensaje explicativo | Abierto |
+| DEF-1 | Al guardar una nota, `setState` recibía un `Future` (callback con `=>` y asignación) y Flutter lanzaba error en debug; afectaba también a Favoritos, Historial y Búsqueda | Corregido — [issue](https://github.com/Javier-Gamez/Practica5-baseDatosAPIs/issues/1) |
+| DEF-2 | Sin conexión no se muestran las imágenes de las series (solo datos guardados) | Abierto — [issue](https://github.com/Javier-Gamez/Practica5-baseDatosAPIs/issues/2) |
+| DEF-3 | El JWT expira a los 60 min y la app vuelve al login sin mensaje explicativo | Abierto — [issue](https://github.com/Javier-Gamez/Practica5-baseDatosAPIs/issues/3) |
 
