@@ -1,0 +1,59 @@
+# Codemagic CI (macOS): compila y prueba la app en el SIMULADOR de iOS, sin firma ni
+# cuenta de Apple Developer. La prueba de integración usa el mismo código que en Android
+# (app/integration_test) y deja capturas reales como artefactos descargables.
+# Los IDs de cliente de Google NO son secretos (son identificadores públicos de la app).
+workflows:
+  ios-practica5:
+    name: iOS - Práctica 5 (simulador)
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      vars:
+        GOOGLE_SERVER_CLIENT_ID: 587340001446-d5nsqm98phdgjlvrem2oit0ku9pusdbe.apps.googleusercontent.com
+        GOOGLE_IOS_CLIENT_ID: 587340001446-r5urmtbn311alc816q794qut4g9rstns.apps.googleusercontent.com
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+    scripts:
+      - name: Dependencias
+        script: |
+          cd app
+          flutter --version
+          flutter pub get
+      - name: Análisis estático y pruebas unitarias
+        script: |
+          cd app
+          flutter analyze --no-fatal-infos
+          flutter test
+      - name: Arrancar simulador de iPhone (iOS 15+)
+        script: |
+          xcrun simctl list devices available
+          UDID=$(xcrun simctl list devices available | grep -E "iPhone [0-9]+" | grep -v "SE" | tail -1 | grep -oE '[0-9A-F]{8}-([0-9A-F]{4}-){3}[0-9A-F]{12}')
+          echo "Simulador elegido: $UDID"
+          xcrun simctl boot "$UDID" || true
+          xcrun simctl bootstatus "$UDID" -b
+          echo "SIM_UDID=$UDID" >> $CM_ENV
+          xcrun simctl list runtimes | grep -i ios
+      - name: Prueba de integración + capturas (iOS)
+        script: |
+          cd app
+          flutter drive --driver=test_driver/integration_test.dart \
+            --target=integration_test/app_test.dart -d "$SIM_UDID" \
+            --dart-define=GOOGLE_SERVER_CLIENT_ID=$GOOGLE_SERVER_CLIENT_ID \
+            --dart-define=GOOGLE_IOS_CLIENT_ID=$GOOGLE_IOS_CLIENT_ID
+      - name: Compilar app para simulador
+        script: |
+          cd app
+          flutter build ios --simulator --debug \
+            --dart-define=GOOGLE_SERVER_CLIENT_ID=$GOOGLE_SERVER_CLIENT_ID \
+            --dart-define=GOOGLE_IOS_CLIENT_ID=$GOOGLE_IOS_CLIENT_ID
+          cd build/ios/iphonesimulator && zip -qr ../../../practica5_ios_simulador.zip Runner.app
+    artifacts:
+      - app/screenshots/*.png
+      - app/*.zip

@@ -77,8 +77,8 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<!-- Reemplazar por el "reversed client ID" de iOS de tu proyecto Google Cloud -->
-				<string>com.googleusercontent.apps.REEMPLAZAR</string>
+				<!-- Reversed client ID del cliente iOS (no es un secreto) -->
+				<string>com.googleusercontent.apps.587340001446-r5urmtbn311alc816q794qut4g9rstns</string>
 			</array>
 		</dict>
 	</array>

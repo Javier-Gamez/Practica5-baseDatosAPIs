@@ -13,9 +13,12 @@ class FavoritesTab extends StatefulWidget {
 
 class _FavoritesTabState extends State<FavoritesTab> {
   late Future<List<Show>> _f = context.read<AppState>().favorites();
-  void _reload() => setState(() {
-        _f = context.read<AppState>().favorites();
-      });
+  void _reload() {
+    if (!mounted) return;
+    setState(() {
+      _f = context.read<AppState>().favorites();
+    });
+  }
 
   @override
   Widget build(BuildContext context) => FutureBuilder<List<Show>>(
@@ -55,6 +58,7 @@ class _HistoryTabState extends State<HistoryTab> {
                 label: const Text('Borrar historial'),
                 onPressed: () async {
                   await context.read<AppState>().clearHistory();
+                  if (!context.mounted) return;
                   setState(() {
                     _f = context.read<AppState>().history();
                   });

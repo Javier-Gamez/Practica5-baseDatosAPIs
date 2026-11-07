@@ -15,9 +15,12 @@ class NotesTab extends StatefulWidget {
 
 class _NotesTabState extends State<NotesTab> {
   late Future<List<Note>> _f = context.read<AppState>().backend.notes();
-  void _reload() => setState(() {
-        _f = context.read<AppState>().backend.notes();
-      });
+  void _reload() {
+    if (!mounted) return;
+    setState(() {
+      _f = context.read<AppState>().backend.notes();
+    });
+  }
 
   Future<void> _edit([Note? n]) async {
     final title = TextEditingController(text: n?.title);

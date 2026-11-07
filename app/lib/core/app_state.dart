@@ -65,6 +65,15 @@ class AppState extends ChangeNotifier {
     if (session != null) syncNow();
   }
 
+  /// Permite a las pruebas de integración simular cambios de conectividad.
+  @visibleForTesting
+  void setOnlineForTest(bool value) {
+    final was = online;
+    online = value;
+    notifyListeners();
+    if (!was && online) syncNow();
+  }
+
   bool _isOnline(List<ConnectivityResult> r) => r.any((e) => e != ConnectivityResult.none);
 
   @override

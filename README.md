@@ -68,6 +68,15 @@ flutter run --dart-define=API_URL=http://localhost:5000
 
 Pruebas unitarias: `flutter test`.
 
+**Prueba de integración (mismo código en Android e iOS):** `app/integration_test` recorre login, búsqueda, favoritos, historial, recomendaciones, offline, reconexión/sync, notas, 403 y panel admin usando servicios simulados, y guarda capturas en `app/screenshots/`.
+
+```bash
+cd app
+flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart -d <dispositivo>
+```
+
+**iOS sin Mac propia:** el archivo [`codemagic.yaml`](codemagic.yaml) compila y ejecuta esa prueba en el simulador de iOS dentro de [Codemagic](https://codemagic.io) (macOS + Xcode) y publica las capturas como artefactos. Conecta el repositorio en Codemagic y lanza el workflow `ios-practica5`.
+
 **HTTPS:** TVMaze se consume por HTTPS. Para el backend, en desarrollo se permite HTTP solo hacia
 `10.0.2.2`/localhost (manifiesto *debug* de Android y `NSAllowsLocalNetworking` en iOS). En un despliegue real
 publicar el backend detrás de un proxy TLS y usar `--dart-define=API_URL=https://...`; las compilaciones *release* de Android no permiten HTTP.
@@ -80,7 +89,7 @@ publicar el backend detrás de un proxy TLS y usar `--dart-define=API_URL=https:
 4. App: `flutter run --dart-define=GOOGLE_SERVER_CLIENT_ID=<web>.apps.googleusercontent.com --dart-define=GOOGLE_IOS_CLIENT_ID=<ios>.apps.googleusercontent.com`.
 5. iOS: reemplazar `com.googleusercontent.apps.REEMPLAZAR` en `ios/Runner/Info.plist` por el *reversed client ID* de iOS.
 
-Los Client IDs no son secretos, pero no se versionan valores reales; `.env` y archivos `google-services.json` / `GoogleService-Info.plist` están en `.gitignore`.
+Los Client IDs son identificadores públicos (no secretos) y el de iOS aparece en `Info.plist` y `codemagic.yaml`. Lo que **no** se versiona: `.env` y los archivos `google-services.json` / `GoogleService-Info.plist` (en `.gitignore`); nunca se usa el *client secret*.
 El token de sesión se guarda con `flutter_secure_storage` (Keystore en Android, Keychain en iOS).
 
 ### Sincronización y conflictos (resumen)
