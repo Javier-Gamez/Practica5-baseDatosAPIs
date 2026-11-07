@@ -17,7 +17,10 @@ class SearchTabState extends State<SearchTab> {
   void run(String q) {
     if (q.trim().isEmpty) return;
     _ctrl.text = q;
-    setState(() => _future = context.read<AppState>().search(q));
+    final f = context.read<AppState>().search(q);
+    setState(() {
+      _future = f;
+    });
   }
 
   @override

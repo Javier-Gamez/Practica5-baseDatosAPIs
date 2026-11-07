@@ -10,7 +10,8 @@ Aplicación **Flutter** (una sola base de código para Android 7.0/API 24+ e iOS
 **Práctica 2** (backend Flask + PostgreSQL con CRUD y JWT). Añade API pública (TVMaze), caché local SQLite,
 sincronización con cola offline, historial, favoritos, recomendaciones, login con Google y rol administrador.
 
-> Base reutilizada de la Práctica 2: <https://github.com/Javier-Gamez/Flask-Compose-Login-API> (commit `5c8fc61`).
+> Base reutilizada de la Práctica 2: <https://github.com/Javier-Gamez/Flask-Compose-Login-API> (commit [`5c8fc61`](https://github.com/Javier-Gamez/Flask-Compose-Login-API/commit/5c8fc61fab3ce9e4328c39311c5c362e8ca6252e)).
+> **Reutilizado:** `/`, `/register`, `/login`, CRUD `/notes`, Docker Compose y bcrypt+JWT. **Añadido:** todo lo marcado como *Nuevo* en la tabla de endpoints y el cliente multiplataforma.
 
 ### Estructura
 
@@ -105,7 +106,7 @@ Detalle en [`docs/sincronizacion.md`](docs/sincronizacion.md).
 (Flask + PostgreSQL backend with CRUD and JWT). It adds a public API (TVMaze), SQLite cache,
 offline queue synchronization, search history, favorites, recommendations, Google sign-in and an admin role.
 
-> Reused base from Practice 2: <https://github.com/Javier-Gamez/Flask-Compose-Login-API> (commit `5c8fc61`).
+> Reused base from Practice 2: <https://github.com/Javier-Gamez/Flask-Compose-Login-API> (commit [`5c8fc61`](https://github.com/Javier-Gamez/Flask-Compose-Login-API/commit/5c8fc61fab3ce9e4328c39311c5c362e8ca6252e)).
 
 ### Layout
 

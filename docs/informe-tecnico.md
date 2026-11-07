@@ -26,7 +26,7 @@ Registro/login con bcrypt + JWT (HS256, con expiración). Google: la app obtiene
 Regla reproducible por géneros: peso(género) = 3·favoritos + 1·series del historial; puntaje = Σ pesos coincidentes + rating/10; se excluyen favoritos; desempate por id. Sin datos: las mejor valoradas. Se persisten con su criterio y fecha para verlas offline. Cubierta por pruebas unitarias.
 
 ## 8. Resultados
-Pruebas automatizadas: 4 de backend y 6 de cliente aprobadas (ver `docs/matriz-pruebas.md`). Las pruebas en dispositivos Android/iOS se registran en la misma matriz.
+Pruebas automatizadas: 4 de backend y 6 de cliente aprobadas (ver `docs/matriz-pruebas.md`). Pruebas funcionales en Android (Samsung Galaxy S21 Ultra, Android 14, dispositivo físico) con el backend en Docker Compose: consulta REST, búsqueda pública (10 resultados en 355 ms), estado vacío, favoritos, recomendaciones, reinicio, consulta offline, reconexión con sincronización, cambios de conectividad en vivo y autorización de administrador (403 para usuario normal, 200 para admin) aprobadas; evidencias en `docs/evidencias/android/` y detalle en `docs/matriz-pruebas.md`. Se hallaron y corrigieron defectos (DEF-1) y quedan abiertos DEF-2 y DEF-3. **Pendiente de validar:** inicio de sesión con Google (requiere Client IDs) y todo el flujo en iOS (requiere macOS/Xcode).
 
 ## 9. Conclusiones
 Un único cliente Flutter cubre ambas plataformas; la cola idempotente evita pérdidas y duplicados durante los reintentos. Limitación: validar iOS requiere macOS/Xcode.
